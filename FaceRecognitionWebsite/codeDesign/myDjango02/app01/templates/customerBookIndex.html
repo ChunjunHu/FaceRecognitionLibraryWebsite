@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示全部管理员信息</title>
+    <!--JavaScript脚本-->
+    <script>
+        // 定义删除数据的脚本函数
+        function delData(gid){
+            // 提示用户
+            if(confirm('确定删除数据吗?')){
+                // 删除数据
+                location = "/devgroup/dodeletebyid/" + gid
+            }
+        }
+        // 定义更新数据的脚本函数
+        function delUpdate(gid){            
+            // 删除数据
+            location = "/devgroup/doupdate/" + gid
+        }
+    </script>
+    <style>
+        *{padding:0;margin:0;}
+        .div-inline{ float:left } 
+        ul,ol{list-style:none;}
+        a{text-decoration:none;color:#000;}
+        .box{width:900px;margin:10px auto;}
+        .nav{width:900px;height:40px;background:orange;}
+        .nav li{float:left;width:300px;line-height:40px;text-align:center;}
+        .nav li a{display:block;}
+        .nav li a:hover{color:#fff;background:red;}
+        .listContent dl dt{float:left;}
+        .listContent dl dd{float:right;width:700px;line-height:25px;}
+        .listContent dl dd a{background:blue;color:#fff;width:50px;height:25px;display:block;text-align:center;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="nav">
+            <li><a class="getData" name="2" href="javascript:;">HTML5</a></li>
+            <li><a class="getData" name="1" href="javascript:;">javascript</a></li>
+            <li><a class="getData" name="3" href="javascript:;">CSS3</a></li>
+            <li><a href="doSelectGetDataIndexByPage">返回目录</a></li>
+        </ul>
+        <div class="div-inline">
+        <form style="position:relative;left:30px;top:10px;" action="/gotoshowSearchData" method="get">
+            {% csrf_token %}
+            <input name="txt" type="text">
+            <input type="submit"  id="search" value="搜索">
+        </form>
+        </div>
+        <div class="div-inline">
+        <input style="position:relative;left:40px;top:10px;" type="button" value="修改密码" onclick="javascript:location.href='http://localhost:8000/gotoChangePassword'"/>
+        </div>
+        <div class="content">
+            {% if msg1 %}
+                <div>{{msg1}}</div>
+            {% elif msg2 %}
+                <div>{{msg2}}</div>
+            {% else %}
+                {% for developer in pageDevelopers %}
+                <div style="clear:both;"></div>
+                <div class="listContent">
+                    <h3>{{developer.title}}</h3>
+                    <dl>
+                        <dt><img width="180" height="180" src="{{developer.imgUrl}}" alt="{{developer.imgUrl}}"></dt>
+                        <dd>{{developer.details}}<br>
+                                <a href='javascript:void(0)' class="sendBack" name="{{developer.Jsid}}">还书</a>
+                        </dd>
+                    </dl>
+                </div> 
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div style="clear:both;"></div>
+        <!-- 分页导航器 -->
+        <p>
+            <div>
+                <span>
+                {% if pageDevelopers.has_previous %}
+                    <a href="?page={{ pageDevelopers.previous_page_number }}&txt={{txt}}">上一页</a>
+                {% endif %}
+                </span>
+                <span>
+                {% for page in pageDevelopers.paginator.page_range %}
+                    <a href="?page={{page}}&txt={{txt}}">{{page}}</a>
+                {% endfor %}
+                </span>
+                <span>
+                {% if pageDevelopers.has_next %}
+                    <a href="?page={{pageDevelopers.next_page_number}}&txt={{txt}}">下一页</a>
+                {% endif %}
+                </span>
+            </div>
+        </p>
+    </div>      
+           
+               
+    
+    
+    
+</body>
+    <script src="static/js/jquery1.7.js"></script>
+    <script>
+       $(function(){
+            // gotoUpdateData
+            $(".sendBack").click(function(){
+                // alert($(this).attr("name"))
+                location="/sendBack?jsId="+$(this).attr("name");
+            })
+
+            $(".getData").click(function(){
+                //alert($(this).attr("name"))
+                location="/doSelectGetCustomerDataByPage?pageSizeData="+$(this).attr("name")
+            })
+        })
+    </script>
+</html>

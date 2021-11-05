@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>更新编辑页面</title>
+</head>
+<body>
+    <h1>更新内容</h1>
+    <!-- 创建一个更新开发者的表单 -->
+    <form id="updateDataForm" name="updateDataForm" method="post" action="doupdate">
+        <!-- 添加 csrf 验证，自动创建token令牌 -->
+        {% csrf_token %}
+        <!-- 创建一个隐藏域 -->
+        <p><input type="hidden" id="Jsid" name="Jsid" value="{{getDataCss.Jsid}}"/></p>
+        <p><input type="text" id="title" name="title" value="{{getDataCss.title}}" required/></p>
+        <p>
+            <img src="{{getDataCss.imgUrl}}" alt="{{getDataCss.imgUrl}}">
+        </p>
+        <p>
+            <textarea rows="5" cols="100"  id="details" name="details" required>{{getDataCss.details}}</textarea>
+        </p>
+        <p><input type="submit" value="马上编辑"/></p>
+    </form>
+    <!-- 接受页面传入参数 -->
+    {{msg}}
+</body>
+</html>

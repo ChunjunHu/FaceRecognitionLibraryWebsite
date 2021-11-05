@@ -1,0 +1,39 @@
+/*全局选择器*/
+*{
+	padding:0;
+	margin:0;
+}
+/*群组选择器*/
+ul,ol{
+	list-style:none;
+}
+/*元素选择器 1  h6*/
+/*class选择器 类选择器 10   .box*/
+/*id选择器权重 100   #box*/
+/*如果权重一样，下面属性覆盖上面的，如果权重不一样，谁大听谁*/
+.box{
+	width:300px;
+	height:200px;
+	border:1px solid red;
+	margin:auto;
+	margin-top:10px;
+}
+.box .title li{
+	float:left;
+	width:100px;
+	line-height:30px;
+	text-align:center;
+	background:orange;
+	cursor:pointer;
+}
+.box .title li:nth-child(1){
+	background:red;
+	color:#fff;
+}
+.box .content li{
+	display:none;
+}
+.box .content li:nth-child(1){
+	display:block;
+}
+

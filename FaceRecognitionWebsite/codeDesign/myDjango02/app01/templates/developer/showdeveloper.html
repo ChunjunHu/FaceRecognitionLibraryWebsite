@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示全部开发者信息</title>
+    <!--JavaScript脚本-->
+    <script>
+        // 定义删除数据的脚本函数
+        function delData(gid){
+            // 提示用户
+            if(confirm('确定删除数据吗?')){
+                // 删除数据
+                location = "/devgroup/dodeletebyid/" + gid
+            }
+        }
+        // 定义更新数据的脚本函数
+        function delUpdate(gid){            
+            // 删除数据
+            location = "/devgroup/doupdate/" + gid
+        }
+    </script>
+</head>
+<body>
+    <h1>显示全部开发者信息</h1>
+    <table border="1" width="60%">
+        <tr>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>入职时间</td>
+            <td>电子邮箱</td>
+            <td>薪资</td>
+            <td>开发小组</td>
+        </tr>
+        <!-- 使用Django表达式循环遍历小组数据集合 -->
+        {% for developer in pageDevelopers %}
+        <tr>
+            <td>{{developer.did}}</td>
+            <td>{{developer.dname}}</td>            
+            <td>{{ developer.dhiredate | date:"Y-m-d" }}</td>
+            <td>{{developer.demail}}</td>
+            <td>{{developer.dsal}}</td>
+            <td>{{developer.devgroup}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- 分页导航器 -->
+    <p>
+        <div>
+            <span>
+            {% if pageDevelopers.has_previous %}
+                <a href="?page={{ pageDevelopers.previous_page_number }}">上一页</a>
+            {% endif %}
+            </span>
+            <span>
+            {% for page in pageDevelopers.paginator.page_range %}
+                <a href="?page={{page}}">{{page}}</a>
+            {% endfor %}
+            </span>
+            <span>
+            {% if pageDevelopers.has_next %}
+                <a href="?page={{pageDevelopers.next_page_number}}">下一页</a>
+            {% endif %}
+            </span>
+        </div>
+    </p>
+</body>
+</html>

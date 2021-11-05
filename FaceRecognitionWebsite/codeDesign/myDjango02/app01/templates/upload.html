@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Django实现文件上传</title>
+    <!-- 引用静态资源css样式表 -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+</head>
+<body>
+    <h1>文件上传</h1>
+    <!-- Django上传表单 -->
+    <form id="upload-form" name='upload-form' method="post" enctype="multipart/form-data" action="/post-upload/">
+        <!-- 使用csrf保护机制生成token令牌，提交数据 -->
+        {% csrf_token %}
+        <input type="file" class="input_txt" id="uploadFile" name="uploadFile" required><br/>
+        <input type="submit" class="btn_submit" value="上传"/>
+    </form>
+</body>
+</html>

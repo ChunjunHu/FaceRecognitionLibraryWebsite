@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #container {  
+            position:fixed;   
+            top:0;   
+            left:0;   
+            width:100%;   
+            height:100%;  
+        }  
+     
+        #container img {  
+            position:absolute;   
+            left:0;   
+            right:0;   
+            bottom:0;   
+            margin:auto;   
+            width:100%;  
+            height:100%;  
+            z-index:-1;  
+        }
+       #infotag {
+            background: rgb(255, 255, 255);
+            width: 600px;
+            height: 350px;
+            position: fixed;
+            left: 55%;
+            top: 50%;
+            z-index: 11;
+            /*设定这个div的margin-top的负值为自身的高度的一半,margin-left的值也是自身的宽度的一半的负值.*/ 
+            /*宽为400,那么margin-top为-200px*/ 
+            /*高为200那么margin-left为-100px;*/ 
+            margin: -200px 0 0 -350px;
+            filter:alpha(Opacity=80);
+            -moz-opacity:0.5;
+            opacity: 0.7;
+        }
+        .fontpage{margin: 215px 245px;}
+    </style>
+</head>
+<!-- 导入Django的静态资源static文件夹 -->
+{% load static %}  
+<body>
+    <div id="container">
+        <img src="{% static "images/back1.jpg" %}">
+        <div id="infotag">
+            <h1 style="text-align:center;color:black;position:absolute;left:120px;top:80px;">欢迎登录智能图书管理界面</h1>
+            <div class="fontpage">
+                    <input type="button" value="点击进入图书馆" onclick="javascript:location.href='http://localhost:8000/gotoBookIndex'"/>
+            </div>
+        </div>        
+    </div> 
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引用静态资源css样式表 -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+</head>
+<body>
+    <h1>登陆表单</h1>
+    <!-- 登陆表单 -->
+    <form id="login-form" id="login-form" method="post" action="/post-login/">
+        {% csrf_token %}
+        <input class="input_txt" type="text" id="account" name="account" placeholder="账号" required/><br/>
+        <input class="input_txt" type="password" id="password" name="password" placeholder="密码" required/><br/>
+        <input class="btn_submit"type="submit" value="马上登陆"/>
+    </form>
+    <p class=".msg">{{ msg }}</p>
+</body>
+</html>

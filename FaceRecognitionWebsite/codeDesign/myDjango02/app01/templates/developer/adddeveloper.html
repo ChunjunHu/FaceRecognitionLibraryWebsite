@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加开发小组</title>
+</head>
+<body>
+    <h1>添加开发者</h1>
+    <!-- 创建一个添加开发者的表单 -->
+    <form id="addDeveloperForm" name="addDeveloperForm" method="post" action="/developer/doadd/">
+        <!-- 添加 csrf 验证，自动创建token令牌 -->
+        {% csrf_token %}
+        <p><input type="text" id="dname" name="dname" placeholder="姓名" required/></p>
+        <p><input type="date" id="dhiredate" name="dhiredate" required/></p>
+        <p><input type="email" id="demail" name="demail" placeholder="yourname@xxx.xx" required/></p>
+        <p><input type="text" id="dsal" name="dsal" placeholder="8000" required/></p>
+        <p><input type="submit" value="立即添加"/></p>
+    </form>
+    <!-- 接受页面传入参数 -->
+    {{msg}}
+</body>
+</html>

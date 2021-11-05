@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引用静态资源css样式表 -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+</head>
+<body>
+    <p>
+        欢迎登陆智能图书馆系统，{{account}}&nbsp;&nbsp;点击<a href="/get-logout">这里</a>退出
+    </p>
+</body>
+</html>

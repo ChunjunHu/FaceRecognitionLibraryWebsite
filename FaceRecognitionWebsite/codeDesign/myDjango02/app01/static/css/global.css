@@ -1,0 +1,46 @@
+/* 各页面通用的css */
+body{
+    background-color: rgb(235, 235, 235);
+    font-size: 0.8em;
+    font-family:'微软雅黑';
+}
+/* face_sluice/templates/index.html中的样式表 */
+#tip{
+    font-size: 0.6em;
+    color: rgb(103, 103, 104);
+    margin-top: 10px;
+}
+/* face_sluice/templates/sample01_h5_camera.html中的样式表 */
+#ul_samples #li_samples{
+    margin-bottom: 10px;
+}
+#video_container{
+    width: 360px; 
+    margin: 0px auto;
+}
+#video_container video{
+    width: 360px;
+    border: 2px dashed green;
+    border-radius: 12px;
+}
+#btn_camera_container{
+    width: 50px; 
+    margin: 0px auto;
+    margin-top: 20px;
+}
+#btn_camera_container #img_camera{
+    width: 50px;
+    cursor:pointer;
+}
+#canvas_container{
+    width:160px;
+    height:110px;
+    margin:0px auto;
+}
+#canvas_container canvas{
+    width: 160px;
+    height: 110px;
+    margin-top:30px; 
+    border:1px dashed gray; 
+    border-radius:10px;
+}

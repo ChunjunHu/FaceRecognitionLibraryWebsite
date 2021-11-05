@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能图书馆-H5摄像头人像采集</title>
+    <!-- 导入js脚本 -->
+    {% load static %}
+    <script type="text/javascript" src="{% static 'scripts/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/video_to_base64.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/photo_ajax.js' %}"></script>
+    <!-- 导入css样式表 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}"/>
+    <!-- 页面js动态脚本 -->
+    <script type="text/javascript">
+        // 调用页面预处理启动函数
+        $("document").ready(function(){
+            // 设置返回按钮的跳转链接地址
+            $("#btn_return").click(function(){
+                location = "/face_sluice";
+            });
+            // 启动摄像头函数(来自scripts/video_to_base64.js)
+            call_camera();
+            // 获取canvas对象并设置为2d取像
+            var context = canvas.getContext("2d");
+            // 设置拍照图表的单击处理事件
+            $("#img_camera").click(function(){
+                context.drawImage(video,0,0,300,160);
+                // 调用photo_ajax()实现图片上传(来自photo_ajax.js)
+                photo_ajax();
+            });            
+        });        
+    </script>
+</head>
+<body>
+    <h1>H5人脸图像采集</h1>
+    <!-- 页面返回按钮 -->
+    <input id="btn_return" type="button" value="返回主页"/>
+    <!-- 设置摄像头图像显示组件video，设置其居中显示 -->
+    <div id="video_container">
+        <!-- 设置该组件宽及圆边角外观显示 -->
+        <video id="video" autoplay="autoplay"></video>
+    </div>
+    <!-- 拍照按钮，获取摄像头采集图像的照片 -->
+    <div id="btn_camera_container">
+        <img id="img_camera" src="{% static 'images/camera.png' %}" alt="单击拍照"/>
+    </div>
+    <!-- Canvas画布组件获取拍照的图片数据并显示 -->
+    <div id="canvas_container">
+        <canvas id="canvas"/>
+    </div>
+</body>
+</html>
